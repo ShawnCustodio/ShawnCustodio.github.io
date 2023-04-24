@@ -1,0 +1,11 @@
+{
+  "name": "ShawnCustodio.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ShawnCustodio/ShawnCustodio.github.io.git",
+  "author": "Shawn Custodio <shawncustodiomail@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
