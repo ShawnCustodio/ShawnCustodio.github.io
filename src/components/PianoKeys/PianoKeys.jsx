@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import ANote from '../../NoteMP3/ANote.mp3';
-import BNote from '../../NoteMP3/BNote.mp3';
-import CNote from '../../NoteMP3/CNote.mp3';
-import DNote from '../../NoteMP3/DNote.mp3';
-import ENote from '../../NoteMP3/ENote.mp3';
-import FNote from '../../NoteMP3/FNote.mp3';
-import GNote from '../../NoteMP3/GNote.mp3';
+import ANote from '../NoteMP3/ANote.mp3';
+import BNote from '../NoteMP3/BNote.mp3';
+import CNote from '../NoteMP3/CNote.mp3';
+import DNote from '../NoteMP3/DNote.mp3';
+import ENote from '../NoteMP3/ENote.mp3';
+import FNote from '../NoteMP3/FNote.mp3';
+import GNote from '../NoteMP3/GNote.mp3';
 import './PianoKeys.css';
 
 const PianoKeys = () => {
