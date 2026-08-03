@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Website
 
-## Getting Started
+A Next.js (App Router, TypeScript, Tailwind v4) site with Home, Projects, Resume, and a Markdown-backed Blog. Built for static export and deployment to GitHub Pages.
 
-First, run the development server:
+## Fill in your content
+
+Everything you need to personalize lives in a few places:
+
+- [`data/site.ts`](data/site.ts) — your name, tagline, bio, location, email, social links, resume file path.
+- [`data/projects.ts`](data/projects.ts) — your project list.
+- [`data/resume.ts`](data/resume.ts) — experience, education, skills.
+- [`content/blog/`](content/blog/) — one Markdown file per blog post (frontmatter: `title`, `date`, `excerpt`, `tags`). Add a new `.md` file here to publish a post.
+- [`public/resume.pdf`](public/) — drop your resume PDF here to match the download link in `data/site.ts`.
+- `app/layout.tsx` — page metadata (title/description) pulls from `data/site.ts` automatically.
+
+## Getting started
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+This produces a static export in `./out` (configured via `output: "export"` in `next.config.ts`), ready to host anywhere that serves static files.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploying to GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+A workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and deploys `./out` to GitHub Pages automatically on every push to `main`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+One-time setup:
 
-## Deploy on Vercel
+1. Push this repo to GitHub.
+2. In the repo settings, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. Push to `main` — the workflow builds and deploys automatically.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The workflow sets the Next.js `basePath` automatically based on your repo name:
+- Repo named `<username>.github.io` → site served at the domain root, no `basePath`.
+- Any other repo name (e.g. `personal-website`) → treated as a project page, served at `<username>.github.io/<repo-name>`, and `basePath` is set to `/<repo-name>` at build time.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech
+
+- Next.js App Router + TypeScript
+- Tailwind CSS v4 (CSS-first config in `app/globals.css`)
+- Markdown blog via `gray-matter` + `remark`
